@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\SekolahController;
+use App\Http\Controllers\SiswaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,6 +20,7 @@ Route::get('/', function () {
 });
 
 Route::get('data-siswa', [SekolahController::class,'fsiswa']);
+Route::resource('siswa', SiswaController::class);
 
 Auth::routes();
 
