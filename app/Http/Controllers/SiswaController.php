@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Siswa;
 
 class SiswaController extends Controller
 {
@@ -13,7 +14,8 @@ class SiswaController extends Controller
      */
     public function index()
     {
-        //
+        $datasiswa = Siswa::get();
+        return view('index', compact('datasiswa'));
     }
 
     /**
