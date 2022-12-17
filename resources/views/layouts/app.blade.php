@@ -43,6 +43,11 @@
                                 Info Kegiatan
                             </a>
                         </li>
+                        <li>
+                            <a href="{{ url('/user')}}" class="nav-link">
+                                Manajemen User
+                            </a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

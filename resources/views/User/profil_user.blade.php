@@ -3,23 +3,23 @@
 <div class="container d-flex justify-content-center"> 
     <div class="card w-50">
         <div class="card-header">
-            <h3>Profil Siswa</h3>
+            <h3>Profil User</h3>
         </div>
         <div class="card-body">
             @can('isAdmin')
-            <a href="{{route ('siswa.index')}}">Kembali</a> 
+            <a href="{{route ('user.index')}}">Kembali</a> 
             @endcan
             <div class="row ml-2">
                 <h4 class="col-4">Nama</h4>
-                <h4>: {{$siswa->nama}}</h4>
+                <h4>: {{$user->name}}</h4>
             </div>
             <div class="row ml-2">
-                <h4 class="col-4">NIS</h4>
-                <h4>: {{$siswa->nis}}</h4>
+                <h4 class="col-4">Email</h4>
+                <h4>: {{$user->email}}</h4>
             </div>
             <div class="row ml-2">
-                <h4 class="col-4">Tanggal Lahir</h4>
-                <h4>: {{$siswa->tgl_lahir}}</h4>
+                <h4 class="col-4">Role</h4>
+                <h4>: {{$user->role}}</h4>
             </div>
         </div>
     </div>

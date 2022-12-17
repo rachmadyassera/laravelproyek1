@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Siswa;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
-class SiswaController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +15,11 @@ class SiswaController extends Controller
      */
     public function index()
     {
-        $datasiswa = Siswa::get();
-        return view('index', compact('datasiswa'));
+        // $datauser = User::all();
+        // return view('User.index', ['user'=>$datauser]);
+        $datauser = User::get();
+        return view('User.index', compact('datauser'));
+
     }
 
     /**
@@ -25,7 +29,7 @@ class SiswaController extends Controller
      */
     public function create()
     {
-        return view('form_tambah');
+        return view('User.form_tambah');
     }
 
     /**
@@ -36,12 +40,13 @@ class SiswaController extends Controller
      */
     public function store(Request $request)
     {
-        Siswa::create([
-            'nama' => $request->nama,
-            'nis' => $request->nis,
-            'tgl_lahir' => $request->tgl_lahir,
+        User::create([
+            'name' => $request->nama,
+            'email' => $request->email,
+            'role' => $request->role,
+            'password' => Hash::make($request->password)
         ]);
-        return redirect()->route('siswa.index');
+        return redirect()->route('user.index');
     }
 
     /**
@@ -52,8 +57,8 @@ class SiswaController extends Controller
      */
     public function show($id)
     {
-        $siswa = Siswa::where('id',$id)->first();
-        return view('profil_siswa',['siswa' => $siswa]);
+        $user = User::where('id',$id)->first();
+        return view('User.profil_user',['user' => $user]);
     }
 
     /**
@@ -64,9 +69,8 @@ class SiswaController extends Controller
      */
     public function edit($id)
     {
-        $datasiswa = Siswa::find($id);
-        return view('form_ubah', ['siswa' => $datasiswa]);
-        
+        $datauser = User::find($id);
+        return view('User.form_ubah', ['user' => $datauser]);
     }
 
     /**
@@ -78,13 +82,13 @@ class SiswaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $siswa = Siswa::find($id);
-        $siswa->nama = $request->nama;
-        $siswa->nis = $request->nis;
-        $siswa->tgl_lahir = $request->tgl_lahir;
-        $siswa->save();
+        $user = User::find($id);
+        $user->name = $request->nama;
+        $user->email = $request->email;
+        $user->role = $request->role;
+        $user->save();
 
-        return redirect()->route('siswa.index');
+        return redirect()->route('user.index');
     }
 
     /**
@@ -95,9 +99,9 @@ class SiswaController extends Controller
      */
     public function destroy($id)
     {
-        $siswa = Siswa::find($id);
-        $siswa->delete();
+        $user = User::find($id);
+        $user->delete();
         
-        return redirect()->route('siswa.index');
+        return redirect()->route('user.index');
     }
 }
